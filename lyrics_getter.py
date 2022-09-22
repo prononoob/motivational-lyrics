@@ -1,4 +1,4 @@
-import requests, re
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -19,7 +19,9 @@ class Getter:
 		for i in self.soup:
 			i = i[i.find('"')+1:]
 			h = i[i.find('h:')+3:]
-			h = self.azlyrics + h[:h.find('html')+4]
+			h = h[:h.find('html')+4]
+			if 'https' not in h:
+				h = self.azlyrics + h
 			i = i[:i.find('"')]
 			print(i, h)
 			self.content = i + ' ' + h + '\n'
