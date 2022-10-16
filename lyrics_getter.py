@@ -28,14 +28,16 @@ class Getter:
 			self.content = i + ' ' + h + '\n'
 			self.f.write(self.content)
 
-	def randomTitle(self):
+	def randomTitle(self, pLink=False):
 		self.x = random.randint(0, self.maxRange)
 		self.link = self.soup[self.x]
 		self.link = self.link[self.link.find('h:')+3:]
 		self.link = self.link[:self.link.find('html')+4]
 		if 'https' not in self.link:
 			self.link = self.azlyrics + self.link
-		print(self.link)
+		self.pLink = pLink
+		if self.pLink == True:
+			print(self.link)
 
 	def randomLyrics(self):
 		self.r2 = requests.get(self.link)
